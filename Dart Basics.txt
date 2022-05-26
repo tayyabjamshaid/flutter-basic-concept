@@ -1,0 +1,125 @@
+Dart
+Dart mei ek special fumction huta ha Main,jo apny ap call hu jata ha
+Jab b hum dart files ko run karain dy,un me ye b hu ga jo khud he call hu ga
+
+=>Statements should be ended with semicolons ;
+1-We have to write datatype with any variable in it
+
+Examples:
+int age=23;
+String name="Tayyab";
+double x=2.2;
+bool user=false;
+
+or 
+agr zyada better way ye ha k hum datatype dny ki bjaiy dart khud judge kry k kis type ki value ha
+It is possible by writing  a var
+  IMP       Only valid if want to initialize value with declaration SEE EXAM name VALID
+var age=23;
+var name="tayyab";
+
+
+-----------------------VALID EXAMPLE
+var name;
+name="tayyab";
+It will give error by this way so,u have to write this
+String name;
+name="tayyab";
+------------------------------------
+2-Also we can use $ sign to give value in string
+var age=23;
+var name="Tayyab";
+print('My name is $name and my age is $age');
+or 
+print('My name is ${name} and my age is ${age} ');
+By using a curly brackets ,we can apply logic in it example
+print('My name is ${name} and my age is ${age-10} ');
+
+3-function
+a)Without Parameters
+int sum(){
+int a =7;
+int b=9;
+return a+b;
+}   //when we return anything,we have to show his return type too
+
+void main(){
+sum();
+}
+b)With Parameters
+int sum(a,b){
+
+return a+b;
+}   
+or we can write this sum function in arrow function
+int sum(a,b)=>a+b;   //we do not need to write return word in it,it will automatically return it
+void main(){
+sum(30,39);
+}
+
+4-list(Arrays)
+var age=[20,30,40]
+age.add(80);  //add method is used to add value in it
+if want to add string in it,it gives error bcoz dart is very smart,it will identify that it is the array of ints,not strings,thats why it gives error
+age.add("tayyab"); //give error
+
+How to iterate it
+age.forEach((data)=>{print(data)});
+
+5-How to make class(Most Imp)
+Example 1 :
+class Bike{
+var colors="red";
+var speed=130;
+void show(){
+print("Bike color is $colors and speed is $speed")}
+
+}
+
+void main(){
+var bullet=Bike();
+print(bullet.speed);
+bullet.show();
+}
+
+Example 2 :
+class Bike{
+late String colors;   //jab with value declare ni krty tu dart pareshan hu jata ha k shayad ye agay is ki value pass na kry,is lye wo ek line show krna shuru hu jaata ha,
+                      to resolve this we use late,late isy btata ha k mai tmhai use kro ga ,lekin thori dtr tak
+late int speed;
+Bike (String colors,int speed){
+this.colors=colors;   //this refer kry ga k ye is class ki properties ha
+this.speed=speed;
+}
+
+}
+
+void main(){
+var bullet=Bike("green",121);
+var bullet2=Bike("blue",161);
+print(bullet2.speed)
+}
+
+
+NAMED ARGUMENTS
+var bullet=Bike(123,"red"); agr hum phly speed pass kr dy aur bad me color tu ye error dy ga k isy ordered k mutabiq likho
+Agr Hum chahty ha k hum isy without order jo mrzi value phly pass out kr dy tu use this concept "named argument"
+
+Example:
+class Bike{
+late String colors;   
+late int speed;
+Bike ({required String colors, required int speed}){  //we have to write required keyword on it
+this.colors=colors;   
+this.speed=speed;
+}
+
+}
+
+void main(){
+var bullet=Bike(speed:12,colors:"red");  //it gives suggestion of colors and speed
+var bullet2=Bike("blue",161);
+print(bullet2.speed)
+}
+--------------------------
+

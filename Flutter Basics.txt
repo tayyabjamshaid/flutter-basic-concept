@@ -1,0 +1,387 @@
+runApp ka function apko bnana he prta ha kyu k ye hamari widgets ka main route huta ha 
+1-Text widget It has 2 parameters
+1st parameter) It is used to show text
+2nd parameter) In it we also have to give textDirection property in it
+Text('Tayyab',textDirection:TextDirection.ltr)
+
+2-We can also give style property in it
+Text('Tayyab',textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))
+
+3-To make our data in center,we use a center widget
+Center has  a property child
+Center(child:Text('Tayyab',textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)))
+
+4-How to make Row
+IMP:(ROW/COLUMN is not scrollable,it is auto adjusted)
+
+Row me hamary pas boht sara data huta ha is lye ye child k bjaiy children ki property ko use krta ha 
+IMP:child me srf hamary pas 1 widget he huta ha while children me hamary pas multiple widgets huty ha
+=>For single data
+Row(textDirection:TextDirection.ltr,children:[Text("One",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))])
+
+=>For Multiple Data
+Jab row ka data zyada hu jata ha tu right side pr yellow lines show huna shuru hu jati ha jis ka matlab ha k data zyada hu rha ha
+
+Example:
+ runApp(Row(textDirection:TextDirection.ltr,children:[Text("One",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)),
+  Text("Two",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))
+  ,Text("Three",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)),
+  Text("Four",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))])
+   
+  );
+
+To Resolve this issue,we use expanded property
+
+5-Expanded
+
+Case 1:When expanded written with only one element
+Jab kisi ek element k sath expanded lgaiy gy tu iska matlab ye huga us element ko chor k baqi sab ko us row me execute kr du
+aur isy last me upr nichay execute kr du
+Example:  
+ runApp(Row(textDirection:TextDirection.ltr,children:[Expanded(child:Text("One",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))),
+  Text("Two",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))
+  ,Text("Three",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)),
+  Text("Four",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))])
+
+Case 2:When expanded written with multiple elements
+Jab multiple k sath hu tu jo sab sy baray waly elements ko upr nichay merge kr dta ha
+ runApp(Row(textDirection:TextDirection.ltr,children:[Expanded(child:Text("One",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))),
+  Expanded(child:Text("Two",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)))
+  ,Expanded(child:Text("Three",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))),
+  Expanded(child:Text("Four",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)))])
+);
+
+IMP:(ROW/COLUMN is not scrollable even using expanded,it is auto adjusted)
+6-Column
+Column me b children property huti ha.Is me b jab zrort sy zyada data a jaiy tu yellow screen a jati ha.Is issue ko resolve
+krny k lye expanded property ka use krty ha.
+Example:
+ runApp(Column(textDirection:TextDirection.ltr,children:[Expanded(child:Text("One",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))),
+  Expanded(child:Text("Two",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)))
+  ,Expanded(child:Text("Three",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))),
+  Expanded(child:Text("Four",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)))])
+   );
+
+7-Container
+It is just like a  html div tag
+Is k andr hum kafi properties dy skty ha like padding,textdecoration etc
+IMP:
+Is me ye properties like padding wagaira ye is k andr elements pr individually apply ni hu gi blky ye all elements as a
+single element k tor pr kam kry gy aur dosary childs k mutabiq ye property kam kry gi
+
+PADDING Property:
+Example:
+ runApp(Container(padding:EdgeInsets.symmetric(vertical: 50.0,horizontal: 50.0),child:Column(textDirection:TextDirection.ltr,children:[Text("One",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)),
+Text("Two",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)),
+  Text("Four",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))])
+ ) );
+
+2nd Property:If we want k 4ro trf sy padding hu dosary childs sy then use this
+padding:EdgeInsets.all(50.0)
+
+Decoration Property:
+Pora element ka background color change kesy huta ha
+  runApp(Container(padding:EdgeInsets.symmetric(vertical: 50.0,horizontal: 50.0),decoration: BoxDecoration(color: Colors.blueAccent),child:Column(textDirection:TextDirection.ltr,children:[Text("One",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)),
+Text("Two",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0)),
+  Text("Four",textDirection:TextDirection.ltr,style:TextStyle(fontSize:50.0))])
+   
+   ) );
+
+Also we can give height and color property in it
+height:100,color:Colors.purple etc...
+
+8-List View (It is not a column or row,if we want to show data from top to bottom then use this)
+It is scrollable
+It increases the performance becoz srf usi data ko load krta ha jo screen pr dikhai dta ha
+In it,first give Directionality widget in it and pass direction property in it
+Directionality widget have a single child in which we pass listView widget which have children(many childs)
+EXAMPLE:
+ runApp(
+   Directionality(textDirection: TextDirection.ltr,   //1st pass Directionality property
+ child: ListView(padding:EdgeInsets.all(10.00),children: [    //Pass listView in its child which many children property 
+                                                              //u can add multiple properties in listview like padding etc
+     Container(height:50.00,color:Colors.deepOrange,child: Center(child: Text('1',textDirection: TextDirection.ltr,style: TextStyle(fontSize: 50.00),))), 
+     Container(height:50.00,color:Colors.lightBlue,child: Center(child: Text('2',textDirection: TextDirection.ltr,style: TextStyle(fontSize: 50.00))))
+   ],))
+   );
+
+9-Material App
+Mostly People prefer to use material app,not compulsory
+It have 2 properties
+  a)title   (ye jab mobile me sari apps jo background me work kr rhi ha,unko remove krty huay unka nam upr ata ha,ye tab show hu ga
+  b)home    It is just like a  child property
+ runApp(
+  MaterialApp(title: "Tayyab App"
+,home:Container(decoration: BoxDecoration(color: Colors.blueAccent),child:Center(child:Text("Tayyab App",textDirection: TextDirection.ltr,) ,) ,))
+   );
+
+10-Scaffold
+Scaffold basically implement krta ha basic material design ko ya visual layout ko
+It has a property body in which we pass data
+By default,its background color is white but if we want to change it,use backgroundColor property
+runApp(
+  MaterialApp(title: "Tayyab App",home:Scaffold(backgroundColor:Colors.blue,  // use backgroundColor here
+body: Center(child: Text("HI,Tayyab",textDirection: TextDirection.ltr,style: TextStyle(fontSize: 60.00),)),))
+   );
+
+11-Appbar 
+It is used in scaffold
+It is just like  a navbar
+We can easily change its background color by using backgroundColor property
+In it,we have a  property title in which we write our text
+Example:
+runApp(
+  MaterialApp(title: "Tayyab App",home:Scaffold(appBar:AppBar(backgroundColor: Colors.brown,title:Text("Hi Tayyab",style: TextStyle(color: Colors.cyan))) //use here
+,backgroundColor:Colors.blue,body: Center(child: Text("HI,Tayyab",textDirection: TextDirection.ltr,style: TextStyle(fontSize: 60.00),)),))
+   );
+
+12-Image
+There are 2 type of images in our project
+a)Saved Images(For this,we use assetImage Property)
+ runApp(
+  MaterialApp(title: "Tayyab App",home:Scaffold(appBar:AppBar(backgroundColor: Colors.brown,title:Text("Hi Tayyab",style: TextStyle(color: Colors.cyan),),),
+  backgroundColor:Colors.blue,
+body:Image(image: AssetImage('images/S.jpg'),fit: BoxFit.cover,width: 90.00,height: 100.00,) )) /////here
+   );
+
+b)Network Images
+ runApp(
+  MaterialApp(title: "Tayyab App",home:Scaffold(appBar:AppBar(backgroundColor: Colors.brown,title:Text("Hi Tayyab",style: TextStyle(color: Colors.cyan),),),
+  backgroundColor:Colors.blue,
+ body:Image(image: NetworkImage('https://www.google.com/url?sa=i&url=https%3A%2F%2Fchanakyaforum.com%2Fthe-pakistan-tlp-phenomena%2F&psig=AOvVaw11cohRSzNPkNbfjUFq0Qnv&ust=1650013689111000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCNDJ_paak_cCFQAAAAAdAAAAABAD')
+,fit: BoxFit.fill,) ))
+   );
+
+13-GridView
+It has 2 mostly used methods
+a)GridView.exent
+  It has following properties
+   *)maxCrossAxisExtent
+       Har image kitni bari dkhni chahiye.Jitni value brhaty jaiy gy usi hisab sy images ko handle krta rhy ga.It is scrollable
+   *)mainAxisSpacing
+     Har image ka top sy bottom kitni space ani chahiye
+   *)crossAxisSpacing
+    Har image ka left to right kitni space ani chahiye
+    It have a  children property
+
+Example:
+runApp(
+  MaterialApp(title: "Tayyab App",home:Scaffold(appBar:AppBar(backgroundColor: Colors.brown,title:Text("Hi Tayyab",style: TextStyle(color: Colors.cyan),),),
+  backgroundColor:Colors.blue,
+   body:GridView.extent(maxCrossAxisExtent: 500,(maxCrossAxisExtent: 100,mainAxisSpacing: 300,crossAxisSpacing: 300,children: [                     //here
+     Image(image: AssetImage('images/K.jpg')),   //image ki jagah koi aur b widget hu skta ha
+      Image(image: AssetImage('images/S.jpg')),
+    Image(image: AssetImage('images/mobiles/m1.jpg')),
+     Image(image: AssetImage('images/mobiles/m2.jpg')),
+      Image(image: AssetImage('images/mobiles/m3.jpg')),
+       Image(image: AssetImage('images/mobiles/m4.jpg')),
+        Image(image: AssetImage('images/mobiles/m5.jpg')),
+         Image(image: AssetImage('images/mobiles/m6.jpg')),
+          Image(image: AssetImage('images/mobiles/m7.png')),
+  ],) ))
+   );
+  
+
+b)GridView.count
+Jitna number dy gy utny grid bna dy ga
+It has following properties
+   *)crossAxisCount
+   Jitna number dy gy utny grid bna dy ga
+   *)mainAxisSpacing
+     Har image ka top sy bottom kitni space ani chahiye
+   *)crossAxisSpacing
+    Har image ka left to right kitni space ani chahiye
+    It have a  children property
+
+Example
+runApp(
+  MaterialApp(title: "Tayyab App",home:Scaffold(appBar:AppBar(backgroundColor: Colors.brown,title:Text("Hi Tayyab",style: TextStyle(color: Colors.cyan),),),
+  backgroundColor:Colors.blue,body:GridView.count(crossAxisCount: 3,mainAxisSpacing: 200,crossAxisSpacing: 100,children: [
+     Image(image: AssetImage('images/K.jpg')),   //image ki jagah koi aur b widget hu skta ha
+      Image(image: AssetImage('images/S.jpg')),
+    Image(image: AssetImage('images/mobiles/m1.jpg')),
+     Image(image: AssetImage('images/mobiles/m2.jpg')),
+      Image(image: AssetImage('images/mobiles/m3.jpg')),
+       Image(image: AssetImage('images/mobiles/m4.jpg')),
+        Image(image: AssetImage('images/mobiles/m5.jpg')),
+         Image(image: AssetImage('images/mobiles/m6.jpg')),
+          Image(image: AssetImage('images/mobiles/m7.png')),
+  ],) ))
+   );
+
+14-Stack Widget
+Ek widget ko dosary sy overlap krta ha
+ runApp(
+  MaterialApp(title: "Tayyab App",home:Scaffold(appBar:AppBar(backgroundColor: Colors.brown,title:Text("Hi Tayyab",style: TextStyle(color: Colors.cyan),),),
+  backgroundColor:Colors.blue,body:Stack(children: [
+    Image(image: AssetImage('images/S.jpg'),),Text("TLP",style: TextStyle(fontSize: 50.00,color: Colors.green),)
+  ],)))
+   );
+is example me image k upr text likha a jai ga
+
+15-ListTile Widget
+Used in ListView
+It is looks like Jesy whatsapp pr hamary conntacts show huty ha (image us k agay name,sub title aur thora agay icon)
+
+Examples:
+runApp(
+  MaterialApp(title: "Tayyab App",home:Scaffold(appBar:AppBar(backgroundColor: Colors.brown,title:Text("Hi Tayyab",style: TextStyle(color: Colors.cyan),),),
+ body:ListView(children: [
+   ListTile(leading: Image.asset("images/mobiles/m1.jpg"),  //yaha image/text as required pass kry gy
+title:const Text("Poco X3 Gt"),    //title
+subtitle: Text("Xaomi Mobiles"),   //subtitle
+trailing:Icon(Icons.delete))       //give icons
+ ]),))
+   );
+
+16-Card & SizedBox widget && Divider && Card Text
+Phly sizedBox pass kry gy jis me us ki height set kry gy aur us k child me card pass kry gy and then card k child me padding widget ka use kry gy us k child me image pass kry gy
+  runApp(
+  MaterialApp(title: "Tayyab App",home:Scaffold(appBar:AppBar(backgroundColor: Colors.brown,title:Text("Hi Tayyab",style: TextStyle(color: Colors.cyan),),),
+ body:SizedBox(height: 230,child: Card(child: Padding(padding:EdgeInsets.all(10), //sizedBox k child me card,card k child me padding,padding k child me column(column is liye taky multiple properties likhi ja sky)
+child:Column(children: [Image.asset("images/mobiles/m1.jpg",height: 120,)  //card image
+,Divider(),Text('Poco X3 Gt',style:TextStyle(fontSize: 30.00))],))),)))     //card text and style
+   );
+
+17-StateLess Widget  vs stateful widget
+Stateless widget wo widget huta ha jo change ni huta  while stateful widget  wo widget huta ha jo user k input pr depened rehta ha like name
+
+18-Buttons in Card
+It has 3 properties
+a)onPressed 
+Jab button pr click hu tu kya hu
+b)child
+Button Text yaha likha jaiy ga
+c)Style
+We can also give styling in it 
+
+Example:
+SizedBox(height: 260,child: Card(child: Padding(padding:EdgeInsets.all(10),child:Column(children: [Image.asset("images/mobiles/m1.jpg",height: 120,),Divider(),Text('Poco X3 Gt',style:TextStyle(fontSize: 30.00)),
+TextButton(onPressed: ()=>{print("Button Click")},   //onPressed 
+ child: Text('Click Me'),   //child
+style: TextButton.styleFrom(primary: Colors.black,backgroundColor: Colors.orange,textStyle: TextStyle(fontSize: 40)))]))));  //style
+
+19-Elevated Button
+Ye khud sy design button bna  k dy dta ha without giving styling
+Mgr agr hum phr b styling dna chahy tu dy skty ha
+
+Example
+ SizedBox(height: 260,child: Card(child: Padding(padding:EdgeInsets.all(10),
+    child:Column(children: [Image.asset("images/mobiles/m1.jpg",height: 120,),Divider(),
+    Text('Poco X3 Gt',style:TextStyle(fontSize: 30.00)),
+ElevatedButton(onPressed: ()=>{print("Tayyab")},
+ child: Text("Click Me"),
+style: ElevatedButton.styleFrom(primary: Colors.green),)]))));  //u can give style here
+
+20-Floating Action Button
+It is used to show button in circle
+FloatingActionButton(onPressed: ()=>{print("Tayyab")},
+ child: Text("Click Me"),backgroundColor:Colors.pink)
+
+21-Add logical Code in stateless widget
+
+Code:
+import 'package:flutter/material.dart';
+class MyHomePage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Center(child: Text(addNumber(10,50),textDirection: TextDirection.ltr,style: TextStyle(fontSize: 30),),);
+    
+    }
+    String addNumber(a,b){
+      return 'Number is ${a+b}';
+    }
+}
+
+22-Add logical Code with Text field in stateFul widget
+CODE:
+
+import 'package:flutter/material.dart';
+class MyHomePage extends StatefulWidget{
+ @override 
+ _MyHomePageState createState() =>_MyHomePageState();
+}
+class _MyHomePageState extends State<MyHomePage>{
+  String name="Something";  //make string
+  @override 
+  Widget build(BuildContext context){
+    return Center(child:Column(children: [
+      TextField(onSubmitted:(value){   //make text field ,it has by default method on submitted
+        setState(() {       //update data in name string
+          name=value;
+        });
+      }),Text(name,textDirection: TextDirection.ltr,style: TextStyle(fontSize: 30),)
+    ],));
+  }}
+
+  OR IF WE WANT K JO HUM INPUT LIKHTY JA RHY HA WO NICHAY SHOW B HU TU USE onChange METHOD instead of onSubmit
+import 'package:flutter/material.dart';
+class MyHomePage extends StatefulWidget{
+ @override 
+ _MyHomePageState createState() =>_MyHomePageState();
+}
+class _MyHomePageState extends State<MyHomePage>{
+  String name="Something";
+  @override 
+  Widget build(BuildContext context){
+    return Center(child:Column(children: [
+      TextField(onChanged:(value){                //////JUST CHANGE HERE 
+        setState(() {
+          name=value;
+        });
+      }),Text(name,textDirection: TextDirection.ltr,style: TextStyle(fontSize: 30),)
+    ],));
+  }
+
+}
+
+-----------------------------------------------
+HOW TO MAKE A  FORM
+CODE:
+class _MyHomePageState extends State<MyHomePage>{
+  var email="";  //make variables
+  var password="";
+ final _formKey=GlobalKey<FormState>();
+ final emailController=TextEditingController();    //make these controllers to catch input field values
+ final passwordController=TextEditingController();
+  @override 
+  Widget build(BuildContext context){
+    return Form(key:_formKey,child: Padding(padding: EdgeInsets.symmetric(vertical: 40,horizontal: 30),child: ListView(
+      children: [
+        TextFormField(controller: emailController,   //Email Text Field
+          decoration: InputDecoration(labelText: "Email : ",labelStyle: TextStyle(fontSize: 20),errorStyle:TextStyle(fontSize: 20,color:Colors.red)),validator: (String? value) {                        
+  if (value!.isEmpty) {                             //Validations
+    return "Email cann't be empty";
+  }else if(!value.contains('@')){
+  return 'Should be a Proper Email';
+  }
+
+  return null;
+},
+        ),            //Password Input field
+         TextFormField(obscureText: true,   //This property is to make ***          
+controller: passwordController                 //Pass value to controller
+          decoration: InputDecoration(labelText: "Password : ",labelStyle: TextStyle(fontSize: 20),errorStyle:TextStyle(fontSize: 20,color:Colors.red)),validator: (String? value) {                        
+  if (value!.isEmpty) {                                         //Password Validation
+    return "Password cann't be empty";
+  }
+
+  return null;
+},
+
+        ),
+        ElevatedButton(onPressed: (){
+          if(_formKey.currentState!.validate()){
+            setState(() {
+               email=emailController.text;                 //After pressing button,put controller values in variables
+           password=passwordController.text;
+            });
+          
+          }
+        }, child: Text("Submit")),
+        Text('Email is ${email}',style: TextStyle(fontSize: 20),),Text('Password is ${password}',style: TextStyle(fontSize: 20))  //Now show the written texts
+      ],
+    ),),);
+  }
+
+}
